@@ -1,0 +1,23 @@
+services:
+  api:
+    build: .
+    container_name: spring-boot-image-rest-api
+    image: spring-boot-image-rest-api
+    ports:
+      - "7003:7003"
+    depends_on:
+      database:
+        condition: service_healthy
+
+  database:
+    image: mysql:latest
+    environment:
+      MYSQL_USERNAME: user
+      MYSQL_DBNAME: db
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "-h", "localhost", "-u", "root", "-p=password", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5

@@ -1,0 +1,15 @@
+# Ignore Maven build artifacts
+target/
+
+# Ignore Docker-related files
+.dockerignore
+.docker/
+Dockerfile
+
+# Ignore IDE-specific files and directories
+.idea/
+*.iml
+.vscode/
+
+# Ignore version control files
+.git/
